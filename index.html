@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Process or Utility?</title>
+<meta name="description" content="When is it OK to use AI? A scroll story about Process Artifacts and Utility Assets, for students and teachers at Park Lane International School.">
+<script>
+  // Opt into the animated layout only when motion is welcome. story.js removes it if GSAP fails to load.
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%94%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Shared SVG defs + symbols. Kept rendered (not display:none) so gradients resolve inside <use>. -->
+<svg class="defs" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="g-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3a2f8f"/>
+      <stop offset=".55" stop-color="#b8579a"/>
+      <stop offset="1" stop-color="#ff9d6c"/>
+    </linearGradient>
+    <linearGradient id="g-gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffe08a"/>
+      <stop offset="1" stop-color="#ff9f1c"/>
+    </linearGradient>
+    <radialGradient id="g-glow">
+      <stop offset="0" stop-color="#fff3c4" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#fff3c4" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <symbol id="selfie-art" viewBox="0 0 400 300">
+    <rect width="400" height="300" fill="url(#g-sky)"/>
+    <circle cx="300" cy="88" r="70" fill="url(#g-glow)" opacity=".7"/>
+    <circle cx="300" cy="88" r="30" fill="#ffd36e"/>
+    <ellipse cx="80" cy="70" rx="46" ry="12" fill="#fff" opacity=".22"/>
+    <ellipse cx="120" cy="60" rx="30" ry="10" fill="#fff" opacity=".18"/>
+    <path d="M0 215 L60 150 L110 185 L180 115 L250 175 L320 125 L400 190 V300 H0Z" fill="#6a56b8"/>
+    <path d="M180 115 L200 137 L188 133 L176 142 L166 130Z" fill="#efeaff" opacity=".9"/>
+    <path d="M0 250 L70 215 L130 238 L190 210 L260 240 L330 220 L400 250 V300 H0Z" fill="#4a3d9a" opacity=".85"/>
+    <ellipse cx="60" cy="262" rx="70" ry="14" fill="#fff" opacity=".35"/>
+    <ellipse cx="350" cy="270" rx="80" ry="15" fill="#fff" opacity=".3"/>
+    <path d="M-10 300 L110 210 L165 188 L265 188 L310 214 L410 300Z" fill="#2c2470"/>
+    <!-- flag -->
+    <rect x="283" y="140" width="3" height="56" rx="1.5" fill="#efeaff"/>
+    <path d="M286 142 L312 150 L286 160Z" fill="#ff4f6d"/>
+    <!-- three hikers -->
+    <g>
+      <rect x="170" y="156" width="24" height="33" rx="10" fill="#ff7a59"/>
+      <circle cx="182" cy="145" r="11" fill="#f1c27d"/>
+      <path d="M176 140 Q182 130 190 139Z" fill="#5b3a29"/>
+      <rect x="160" y="150" width="7" height="20" rx="3.5" fill="#ff7a59" transform="rotate(-35 163 160)"/>
+    </g>
+    <g>
+      <rect x="204" y="152" width="26" height="37" rx="11" fill="#2ee6c9"/>
+      <circle cx="217" cy="140" r="12" fill="#8d5524"/>
+      <path d="M205 136 Q217 122 229 136Z" fill="#1c1c2e"/>
+      <rect x="226" y="120" width="7" height="26" rx="3.5" fill="#2ee6c9" transform="rotate(20 229 140)"/>
+      <rect x="198" y="120" width="7" height="26" rx="3.5" fill="#2ee6c9" transform="rotate(-20 201 140)"/>
+    </g>
+    <g>
+      <rect x="240" y="158" width="23" height="31" rx="10" fill="#ffb238"/>
+      <circle cx="251" cy="147" r="10.5" fill="#c68642"/>
+      <rect x="240" y="135" width="22" height="6" rx="3" fill="#ff4f6d"/>
+      <circle cx="251" cy="134" r="4" fill="#ff4f6d"/>
+    </g>
+  </symbol>
+
+  <symbol id="ic-process" viewBox="0 0 24 24">
+    <ellipse cx="7.5" cy="15.5" rx="3" ry="4.6"/>
+    <circle cx="5.2" cy="9.3" r="1.1"/><circle cx="7.3" cy="8.6" r="1.15"/><circle cx="9.4" cy="9.2" r="1"/>
+    <ellipse cx="16.5" cy="9" rx="3" ry="4.6"/>
+    <circle cx="14.4" cy="2.9" r="1"/><circle cx="16.5" cy="2.2" r="1.15"/><circle cx="18.7" cy="2.8" r="1.1"/>
+  </symbol>
+  <symbol id="ic-utility" viewBox="0 0 24 24">
+    <g fill="currentColor">
+      <rect x="10.4" y="1" width="3.2" height="5" rx="1.2"/>
+      <rect x="10.4" y="1" width="3.2" height="5" rx="1.2" transform="rotate(45 12 12)"/>
+      <rect x="10.4" y="1" width="3.2" height="5" rx="1.2" transform="rotate(90 12 12)"/>
+      <rect x="10.4" y="1" width="3.2" height="5" rx="1.2" transform="rotate(135 12 12)"/>
+      <rect x="10.4" y="1" width="3.2" height="5" rx="1.2" transform="rotate(180 12 12)"/>
+      <rect x="10.4" y="1" width="3.2" height="5" rx="1.2" transform="rotate(225 12 12)"/>
+      <rect x="10.4" y="1" width="3.2" height="5" rx="1.2" transform="rotate(270 12 12)"/>
+      <rect x="10.4" y="1" width="3.2" height="5" rx="1.2" transform="rotate(315 12 12)"/>
+    </g>
+    <circle cx="12" cy="12" r="5.6" fill="none" stroke="currentColor" stroke-width="3.6"/>
+  </symbol>
+</svg>
+
+<div class="sky" aria-hidden="true"><div class="stars"></div></div>
+<div class="progress" aria-hidden="true"><span></span></div>
+
+<main>
+
+<!-- 0 · HOOK -->
+<section class="chapter hook" data-sky="night" id="top">
+  <div class="hook-inner">
+    <p class="kicker">Park Lane · Using AI well</p>
+    <figure class="polaroid hook-photo">
+      <svg viewBox="0 0 400 300" role="img" aria-label="Illustration: three friends at a mountain summit at sunset"><use href="#selfie-art"/></svg>
+      <figcaption>Summit day ☀️</figcaption>
+    </figure>
+    <h1>Why does this photo <em>matter</em>?</h1>
+    <p class="lede">It's the key to knowing when AI helps you, and when it quietly makes your work worthless.</p>
+    <p class="scroll-cue">Scroll <span aria-hidden="true">↓</span></p>
+  </div>
+</section>
+
+<!-- 1 · SUMMIT SELFIE (pinned scene) -->
+<section class="chapter summit" data-sky="process" id="summit" aria-labelledby="summit-h">
+  <h2 id="summit-h" class="visually-hidden">The summit selfie</h2>
+  <div class="summit-stage">
+    <div class="stage-visual">
+      <figure class="polaroid real-selfie">
+        <svg viewBox="0 0 400 300" role="img" aria-label="The summit selfie"><use href="#selfie-art"/></svg>
+        <div class="pixel-grid" aria-hidden="true"><span>2,073,600 pixels</span></div>
+        <figcaption>Summit day ☀️</figcaption>
+        <span class="badge badge-process"><svg><use href="#ic-process"/></svg>Process Artifact</span>
+      </figure>
+
+      <div class="trail">
+        <svg viewBox="0 0 800 500" role="img" aria-label="Illustration: the trail up the mountain">
+          <circle class="moon" cx="640" cy="80" r="26" fill="#efeaff"/>
+          <circle class="moon" cx="652" cy="72" r="24" fill="#241b5c"/>
+          <circle class="sun" cx="640" cy="80" r="70" fill="url(#g-glow)" opacity="0"/>
+          <circle class="sun" cx="640" cy="80" r="30" fill="#ffd36e" opacity="0"/>
+          <path d="M0 500 L0 360 L120 280 L210 330 L300 250 L380 300 V500Z" fill="#2a2168"/>
+          <path d="M0 500 L150 340 L250 370 L420 115 L560 300 L640 255 L800 400 V500Z" fill="#3e3394"/>
+          <path d="M420 115 L466 182 L444 172 L424 194 L402 170 L380 178Z" fill="#efeaff"/>
+          <g fill="#1d6f62">
+            <path d="M60 470 l18 -44 l18 44Z"/><path d="M95 482 l14 -36 l14 36Z"/><path d="M640 470 l18 -46 l18 46Z"/><path d="M690 480 l14 -34 l14 34Z"/><path d="M30 490 l12 -30 l12 30Z"/>
+          </g>
+          <path class="trail-ghost" d="M90 488 C200 476 262 440 238 405 C212 368 330 382 340 330 C350 282 278 268 330 238 C382 208 425 222 404 182 C394 162 414 140 420 120" fill="none" stroke="#ffd9a0" stroke-width="4" stroke-dasharray="2 12" stroke-linecap="round" opacity=".55"/>
+          <path class="trail-line" d="M90 488 C200 476 262 440 238 405 C212 368 330 382 340 330 C350 282 278 268 330 238 C382 208 425 222 404 182 C394 162 414 140 420 120" fill="none" stroke="#ffb238" stroke-width="6" stroke-linecap="round"/>
+          <g class="rain" opacity="0" stroke="#9fd8ff" stroke-width="3" stroke-linecap="round">
+            <path d="M200 120 l-8 22"/><path d="M260 90 l-8 22"/><path d="M320 140 l-8 22"/><path d="M380 70 l-8 22"/><path d="M450 130 l-8 22"/><path d="M520 80 l-8 22"/><path d="M580 150 l-8 22"/><path d="M150 180 l-8 22"/><path d="M230 210 l-8 22"/><path d="M500 200 l-8 22"/><path d="M300 40 l-8 22"/><path d="M620 200 l-8 22"/>
+          </g>
+          <g class="trail-marks"></g>
+          <g class="hikers" transform="translate(420 110)">
+            <circle cx="-9" cy="0" r="6" fill="#ff7a59"/><circle cx="0" cy="-4" r="7" fill="#2ee6c9"/><circle cx="9" cy="0" r="6" fill="#ffb238"/>
+          </g>
+        </svg>
+      </div>
+
+      <figure class="polaroid ai-selfie">
+        <div class="shards"><svg viewBox="0 0 400 300" role="img" aria-label="An identical AI-generated selfie"><use href="#selfie-art"/></svg></div>
+        <figcaption>Generated in 4 seconds</figcaption>
+        <span class="badge badge-ai">AI-generated</span>
+        <span class="stamp" aria-hidden="true">Worth: 0</span>
+      </figure>
+    </div>
+
+    <ol class="stage-steps">
+      <li class="step"><p>This is a summit selfie. Three friends, one mountain, one photo.</p></li>
+      <li class="step"><p>To your phone, it's just two million coloured dots. So why would anyone print it and frame it?</p></li>
+      <li class="step"><p><strong>Rewind.</strong> 5:40 am. The alarm goes off. Nobody wants to get up.</p></li>
+      <li class="step"><p><strong>Kilometre 4.</strong> Rain. Someone wants to turn back.</p></li>
+      <li class="step"><p><strong>Kilometre 7.</strong> A blister. Everyone keeps going anyway.</p></li>
+      <li class="step"><p><strong>The top.</strong></p></li>
+      <li class="step"><p>That's what the photo is worth. Not the pixels: <span class="hl-process">the hike</span>. The photo is a <em>receipt</em> for something that really happened.</p></li>
+      <li class="step"><p>Now imagine AI made the exact same photo. Same faces. Same mountain. Same pixels.</p></li>
+      <li class="step"><p>But nobody climbed anything. It's a receipt for nothing. <strong>Worth: zero.</strong></p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 2 · PROCESS ARTIFACTS -->
+<section class="chapter process-ch" data-sky="process" id="process" aria-labelledby="process-h">
+  <div class="wrap">
+    <p class="kicker kicker-process"><svg class="ic"><use href="#ic-process"/></svg>Process Artifacts</p>
+    <h2 id="process-h">Some things are only valuable because of <span class="hl-process">what it took to make them</span>.</h2>
+
+    <div class="cards three">
+      <article class="art-card">
+        <svg class="art" viewBox="0 0 200 200" aria-hidden="true">
+          <path d="M70 10 L100 90 L80 96 L48 18Z" fill="#ff4f6d"/>
+          <path d="M130 10 L100 90 L120 96 L152 18Z" fill="#3a6df0"/>
+          <circle cx="100" cy="128" r="50" fill="url(#g-gold)"/>
+          <circle cx="100" cy="128" r="36" fill="#ffcc4d"/>
+          <path d="M100 104 l7 15 l16 2 l-12 11 l3 16 l-14 -8 l-14 8 l3 -16 l-12 -11 l16 -2Z" fill="#ff9f1c"/>
+        </svg>
+        <h3>A football medal</h3>
+        <div class="receipt" aria-label="What the medal is a receipt for">
+          <p class="r-head">RECEIPT</p>
+          <p><span>Training sessions</span><span>×120</span></p>
+          <p><span>Cold early mornings</span><span>×38</span></p>
+          <p><span>Matches lost</span><span>×4</span></p>
+          <p><span>Final whistle</span><span>×1</span></p>
+          <p class="r-total"><span>TOTAL</span><span>1 medal</span></p>
+        </div>
+      </article>
+
+      <article class="art-card">
+        <svg class="art" viewBox="0 0 200 200" aria-hidden="true">
+          <rect x="10" y="80" width="180" height="26" rx="8" fill="#1b1830"/>
+          <rect x="10" y="84" width="180" height="4" rx="2" fill="#3b3660"/>
+          <path d="M92 92 L70 176 L88 180 L100 110Z" fill="#1b1830"/>
+          <path d="M108 92 L130 176 L112 180 L100 110Z" fill="#14122a"/>
+          <rect x="84" y="74" width="32" height="38" rx="9" fill="#26223f"/>
+          <rect x="70" y="158" width="18" height="10" fill="#ffb238" transform="rotate(14 79 163)"/>
+          <rect x="112" y="158" width="18" height="10" fill="#ffb238" transform="rotate(-14 121 163)"/>
+        </svg>
+        <h3>A karate black belt</h3>
+        <div class="receipt">
+          <p class="r-head">RECEIPT</p>
+          <p><span>Classes</span><span>×400</span></p>
+          <p><span>Years</span><span>×3</span></p>
+          <p><span>Bruises</span><span>lots</span></p>
+          <p><span>Gradings passed</span><span>×9</span></p>
+          <p class="r-total"><span>TOTAL</span><span>1 belt</span></p>
+        </div>
+        <p class="twist">Or buy one online for £5. Same cloth. <strong>Blank receipt.</strong></p>
+      </article>
+
+      <article class="art-card">
+        <svg class="art" viewBox="0 0 200 200" aria-hidden="true">
+          <rect x="44" y="18" width="120" height="160" rx="8" fill="#e9e4ff" transform="rotate(6 104 98)"/>
+          <rect x="36" y="16" width="120" height="164" rx="8" fill="#fdfbf6"/>
+          <g fill="#c9c3e8"><rect x="52" y="38" width="70" height="8" rx="4"/><rect x="52" y="58" width="88" height="6" rx="3"/><rect x="52" y="72" width="80" height="6" rx="3"/><rect x="52" y="86" width="88" height="6" rx="3"/><rect x="52" y="108" width="84" height="6" rx="3"/><rect x="52" y="122" width="60" height="6" rx="3"/><rect x="52" y="144" width="88" height="6" rx="3"/></g>
+          <path d="M50 120 Q90 112 118 128" stroke="#ff4f6d" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <circle cx="146" cy="58" r="12" fill="none" stroke="#ff4f6d" stroke-width="3"/>
+        </svg>
+        <h3>A history essay</h3>
+        <div class="receipt">
+          <p class="r-head">RECEIPT</p>
+          <p><span>Sources read</span><span>×12</span></p>
+          <p><span>Drafts</span><span>×3</span></p>
+          <p><span>Arguments thrown out</span><span>×2</span></p>
+          <p><span>Ideas that are yours</span><span>all</span></p>
+          <p class="r-total"><span>TOTAL</span><span>1 essay</span></p>
+        </div>
+      </article>
+    </div>
+
+    <p class="big-line">A <span class="hl-process">Process Artifact</span> is a receipt.<br>Take away the process, and it's worth nothing.</p>
+  </div>
+</section>
+
+<!-- 3 · UTILITY ASSETS -->
+<section class="chapter utility-ch" data-sky="utility" id="utility" aria-labelledby="utility-h">
+  <div class="wrap">
+    <p class="kicker kicker-utility"><svg class="ic"><use href="#ic-utility"/></svg>Utility Assets</p>
+    <h2 id="utility-h">Other things are valuable simply because they're <span class="hl-utility">useful</span>.</h2>
+
+    <div class="split">
+      <div class="map-card">
+        <svg class="map" viewBox="0 0 400 300" role="img" aria-label="Illustration: a map with a route drawn between two pins">
+          <rect width="400" height="300" rx="18" fill="#0d3247"/>
+          <g fill="#14475f">
+            <rect x="20" y="20" width="90" height="60" rx="8"/><rect x="130" y="20" width="110" height="60" rx="8"/><rect x="260" y="20" width="120" height="60" rx="8"/>
+            <rect x="20" y="100" width="90" height="80" rx="8"/><rect x="130" y="100" width="60" height="80" rx="8"/><rect x="210" y="100" width="170" height="80" rx="8"/>
+            <rect x="20" y="200" width="150" height="80" rx="8"/><rect x="190" y="200" width="80" height="80" rx="8"/><rect x="290" y="200" width="90" height="80" rx="8"/>
+          </g>
+          <rect x="210" y="100" width="70" height="80" rx="8" fill="#1d6f62"/>
+          <circle cx="345" cy="240" r="16" fill="#3a8fd8" opacity=".6"/>
+          <path class="route" d="M60 190 H120 V90 H250 V190 H335 V240" fill="none" stroke="#2ee6c9" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="60" cy="190" r="10" fill="#fdfbf6"/><circle cx="60" cy="190" r="5" fill="#0d3247"/>
+          <path d="M335 214 a14 14 0 0 1 14 14 c0 12 -14 26 -14 26 c0 0 -14 -14 -14 -26 a14 14 0 0 1 14 -14Z" fill="#ff4f6d"/>
+          <circle cx="335" cy="228" r="5" fill="#fdfbf6"/>
+        </svg>
+        <ol class="directions">
+          <li><span aria-hidden="true">↑</span> Head north for 400 m</li>
+          <li><span aria-hidden="true">↱</span> Turn right onto Station Road</li>
+          <li><span aria-hidden="true">↻</span> At the roundabout, take the 2nd exit</li>
+          <li><span aria-hidden="true">📍</span> Destination is on your right</li>
+        </ol>
+      </div>
+      <div class="split-text">
+        <p class="q">Who wrote these directions? A person? An app? AI?</p>
+        <p>You don't care. You care that they <strong>get you there</strong>.</p>
+        <div class="sum-card" aria-label="2,847 plus 1,396 equals 4,243">
+          <span>2,847</span><span>+ 1,396</span><span class="sum-line"></span><span class="sum-ans">4,243</span>
+        </div>
+        <p>Same with a correct sum. Calculator, human or AI: the answer is just as good.</p>
+      </div>
+    </div>
+
+    <div class="judged">
+      <p>A <span class="hl-utility">Utility Asset</span> is judged on three things:</p>
+      <ul class="chips">
+        <li>✓ Is it correct?</li><li>✓ Is it clear?</li><li>✓ Is it useful?</li>
+      </ul>
+      <p class="small">Who made it doesn't change its value. But <strong>someone still has to check it's right</strong>, and that someone is you.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · THE TEST -->
+<section class="chapter test-ch" data-sky="night" id="test" aria-labelledby="test-h">
+  <div class="wrap narrow">
+    <p class="kicker">The one-question test</p>
+    <h2 id="test-h">If you found out AI made it, would it <em>lose its value</em>?</h2>
+    <div class="flow">
+      <div class="flow-branch flow-process">
+        <p class="flow-ans">“Yes, it'd be worthless.”</p>
+        <p class="flow-arrow" aria-hidden="true">↓</p>
+        <p class="flow-verdict"><svg class="ic"><use href="#ic-process"/></svg>Process Artifact</p>
+        <p class="flow-rule">Do it yourself. The doing <em>is</em> the point.</p>
+      </div>
+      <div class="flow-branch flow-utility">
+        <p class="flow-ans">“No, it's just as useful.”</p>
+        <p class="flow-arrow" aria-hidden="true">↓</p>
+        <p class="flow-verdict"><svg class="ic"><use href="#ic-utility"/></svg>Utility Asset</p>
+        <p class="flow-rule">AI can help. You check it's right.</p>
+      </div>
+    </div>
+    <p class="small center">Another way to ask it: <em>is this meant to <strong>prove</strong> someone did something, or just to be <strong>useful</strong>?</em></p>
+  </div>
+</section>
+
+<!-- 5 · ROUND 1 -->
+<section class="chapter play-ch" data-sky="night" id="round1" aria-labelledby="r1-h">
+  <div class="wrap narrow">
+    <p class="kicker">Your turn · Round 1</p>
+    <h2 id="r1-h">Process Artifact or Utility Asset?</h2>
+    <p class="lede">Ten things. Sort each one.</p>
+    <div class="classifier" data-round="r1" data-count="10"><noscript><p>The sorting game needs JavaScript.</p></noscript></div>
+  </div>
+</section>
+
+<!-- 6 · SCHOOL -->
+<section class="chapter school-ch" data-sky="process" id="school" aria-labelledby="school-h">
+  <div class="wrap">
+    <p class="kicker kicker-process"><svg class="ic"><use href="#ic-process"/></svg>So what about school?</p>
+    <h2 id="school-h">Your teacher doesn't need another essay on the causes of the First World War.</h2>
+    <p class="lede">They've read hundreds. What they need is <span class="hl-process">evidence that the thinking happened in <em>your</em> head</span>. That's what homework is <em>for</em>.</p>
+
+    <div class="dots-wrap">
+      <div class="dots" aria-hidden="true"></div>
+      <p class="dots-caption">Almost everything you hand in is a <span class="hl-process">Process Artifact</span>. Your essay is your summit selfie.</p>
+    </div>
+
+    <div class="gym">
+      <svg class="gym-art" viewBox="0 0 320 180" aria-hidden="true">
+        <rect x="0" y="160" width="320" height="20" rx="6" fill="#2c2470"/>
+        <rect x="150" y="40" width="16" height="122" rx="4" fill="#ffb238"/>
+        <rect x="120" y="58" width="76" height="10" rx="5" fill="#d9d4ff"/>
+        <rect x="104" y="42" width="18" height="42" rx="6" fill="#4a3d9a"/><rect x="194" y="42" width="18" height="42" rx="6" fill="#4a3d9a"/>
+        <rect x="40" y="100" width="110" height="52" rx="10" fill="#ffb238"/>
+        <rect x="60" y="74" width="54" height="34" rx="8" fill="#ffcc4d"/>
+        <rect x="68" y="80" width="38" height="20" rx="4" fill="#9fd8ff"/>
+        <circle cx="68" cy="156" r="14" fill="#1b1830"/><circle cx="124" cy="156" r="14" fill="#1b1830"/>
+        <circle cx="250" cy="96" r="16" fill="#c68642"/><rect x="236" y="114" width="28" height="44" rx="12" fill="#2ee6c9"/>
+        <path d="M244 92 q6 4 12 0" stroke="#1b1830" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      </svg>
+      <p>Using AI on a Process Artifact is like <strong>bringing a forklift to the gym</strong>. The weights go up. You don't get any stronger.</p>
+    </div>
+
+    <div class="where-ai">
+      <h3><svg class="ic ic-u"><use href="#ic-utility"/></svg>Where AI <em>can</em> help you</h3>
+      <p>When you need a <span class="hl-utility">Utility Asset</span> for yourself: questions to quiz yourself on, a revision timetable, a unit conversion, a different explanation of something you're stuck on. The useful thing comes from AI. The learning still happens in you.</p>
+      <p class="small">Each task's instructions come first. If you're not sure, ask your teacher.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · TEACHERS -->
+<section class="chapter teacher-ch" data-sky="utility" id="teachers" aria-labelledby="teach-h">
+  <div class="wrap">
+    <p class="kicker">Teachers too</p>
+    <h2 id="teach-h">The same rule applies to your teachers.</h2>
+    <div class="two-col">
+      <div class="col col-utility">
+        <p class="col-head"><svg class="ic"><use href="#ic-utility"/></svg>AI can help make these</p>
+        <ul>
+          <li>📝 A vocab quiz</li><li>➗ A worksheet of practice questions</li><li>🖼️ A slide template</li><li>✉️ A trip-logistics letter home</li><li>🪑 A seating plan</li>
+        </ul>
+        <p class="small">They're Utility Assets. You need them to be correct and clear, not handmade.</p>
+      </div>
+      <div class="col col-process">
+        <p class="col-head"><svg class="ic"><use href="#ic-process"/></svg>These must come from your teacher</p>
+        <ul>
+          <li>💬 Personal feedback on your work</li><li>📋 Your report comments</li><li>🎓 A university reference</li>
+        </ul>
+        <p class="small">They're Process Artifacts. Their whole value is that <strong>a real person read your work and thought about you</strong>.</p>
+      </div>
+    </div>
+    <p class="big-line">Feedback is your teacher's summit selfie.<br><span class="hl-process">Proof they made the climb through your work.</span></p>
+
+    <div class="play-inline">
+      <p class="kicker">Teacher round</p>
+      <div class="classifier" data-round="teacher" data-count="8"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 · IT DEPENDS ON PURPOSE -->
+<section class="chapter depends-ch" data-sky="night" id="depends" aria-labelledby="dep-h">
+  <div class="wrap">
+    <p class="kicker">The tricky part</p>
+    <h2 id="dep-h">It's not about <em>what</em> the thing is. It's about what it's <span class="hl-mix">for</span>.</h2>
+    <p class="lede">The same kind of object can be either. Tap each card to switch its purpose.</p>
+
+    <div class="flips">
+      <button class="flip" type="button" aria-pressed="false" data-a="Homework for Spanish class. Practising translation is the learning." data-b="A menu translated for visiting families. They just need to read it." data-title="A translated paragraph" data-emoji="🌍">
+        <span class="flip-emoji" aria-hidden="true">🌍</span>
+        <span class="flip-title">A translated paragraph</span>
+        <span class="flip-ctx">Homework for Spanish class. Practising translation is the learning.</span>
+        <span class="flip-verdict"></span>
+      </button>
+      <button class="flip" type="button" aria-pressed="false" data-a="Your history essay. It shows your thinking." data-b="A model paragraph your teacher hands out for the class to annotate." data-title="A well-argued paragraph" data-emoji="📄">
+        <span class="flip-emoji" aria-hidden="true">📄</span>
+        <span class="flip-title">A well-argued paragraph</span>
+        <span class="flip-ctx">Your history essay. It shows your thinking.</span>
+        <span class="flip-verdict"></span>
+      </button>
+      <button class="flip" type="button" aria-pressed="false" data-a="Making them yourself. Deciding what matters IS the revision." data-b="A ready-made deck you use to quiz yourself. Testing yourself is the learning." data-title="Revision flashcards" data-emoji="🗂️">
+        <span class="flip-emoji" aria-hidden="true">🗂️</span>
+        <span class="flip-title">Revision flashcards</span>
+        <span class="flip-ctx">Making them yourself. Deciding what matters IS the revision.</span>
+        <span class="flip-verdict"></span>
+      </button>
+    </div>
+
+    <p class="big-line">Same object. Different job.<br>Always ask: <span class="hl-mix">what is this FOR?</span></p>
+
+    <div class="play-inline">
+      <p class="kicker">Round 2 · Purpose decides</p>
+      <div class="classifier" data-round="r2" data-count="12"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 · TAKEAWAY -->
+<section class="chapter takeaway-ch" data-sky="dawn" id="takeaway" aria-labelledby="take-h">
+  <div class="wrap">
+    <div class="poster" id="poster">
+      <p class="poster-top">Park Lane International School · Using AI well</p>
+      <h2 id="take-h">Process or Utility?</h2>
+      <div class="poster-cols">
+        <div class="pc pc-process">
+          <p class="pc-head"><svg class="ic"><use href="#ic-process"/></svg>Process Artifact</p>
+          <p>Valued as <strong>evidence that a process happened</strong>.</p>
+          <p class="pc-eg">Summit selfie · medal · essay · lab report · feedback</p>
+          <p class="pc-rule">Do it yourself.</p>
+        </div>
+        <div class="pc pc-utility">
+          <p class="pc-head"><svg class="ic"><use href="#ic-utility"/></svg>Utility Asset</p>
+          <p>Valued because it's <strong>useful</strong>.</p>
+          <p class="pc-eg">Directions · a correct sum · vocab quiz · timetable</p>
+          <p class="pc-rule">AI can help. You check it's right.</p>
+        </div>
+      </div>
+      <p class="poster-test"><span>The test</span>If you found out AI made it, would it lose its value?</p>
+      <p class="poster-foot">Purpose decides, not the type of object. Teachers follow the same rule.</p>
+    </div>
+    <div class="poster-actions">
+      <button type="button" class="btn btn-ghost" id="print-poster">🖨️ Print this as a poster</button>
+      <a class="btn btn-ghost" href="#top">↑ Back to the top</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="js/items.js"></script>
+<script src="js/classify.js"></script>
+<script src="js/story.js"></script>
+</body>
+</html>
